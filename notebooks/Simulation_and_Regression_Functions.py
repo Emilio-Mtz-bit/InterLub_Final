@@ -17,7 +17,7 @@ from torch.utils.data import DataLoader, TensorDataset
 # 1. CARGA E IMPUTACIÓN DE DATOS
 # ==============================================================================
 
-df = pd.read_csv("datos_onehotenocder.csv")
+df = pd.read_csv("../data/datos_onehotenocder.csv")
 
 def imputar_datos_faltantes(df_entrada):
     """
@@ -358,14 +358,14 @@ df_preparado = vectorizar_texto(df_limpio, columnas_texto)
 
 # C. Configuración
 cantidades = {
-    'knn': 0,        
-    'gaussian': 300, 
-    'vae': 0       
+    'knn': 1000,        
+    'gaussian': 0, 
+    'vae': 1000      
 }
 
 # D. Generación (Simula Categorías y Texto vectorizado con KNN)
 df_final_simulado = generar_dataset_con_vectorizacion_simulada(df_preparado, cantidades,categoric_cols)
-
+df_final_simulado.to_csv("dataset_simulado.csv")
 # E. Regresión
 target = 'Carga Timken Ok, lb'
 predictors = [
